@@ -35,7 +35,7 @@ const Navbar = ({setShowLogin}) => {
           <img src={assets.search_icon} alt='Search' className='w-4 h-4' />
         </div>
 
-        <Link to="/dashboard" className='text-md'>Dashboard</Link>
+        <Link to="/owner" className='text-md'>Dashboard</Link>
 
         <button className='bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg w-24 transition-all cursor-pointer'>
           Login
