@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
-import { Link, useLocation,useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { assets } from '../../../assets/assets';
 import { menuLinks } from '../assets/assets';
 import '../index.css';
 
-
-const Navbar = ({setShowLogin}) => {
+const Navbar = ({ setShowLogin }) => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <nav className={`flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-5  text-gray-700 shadow-sm relative transition-all ${location.pathname === "/" ? "bg-blue-50" : "bg-blue-50"}`}>
+    <nav className={`flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-5 text-gray-700 shadow-sm relative transition-all ${location.pathname === "/" ? "bg-blue-50" : "bg-blue-50"}`}>
       
       {/* Logo */}
       <Link to='/' className='flex items-center gap-2'>
         <img src={assets.logo} alt='Logo' className='h-9' />
-       
       </Link>
 
       {/* Desktop Menu */}
@@ -37,7 +35,11 @@ const Navbar = ({setShowLogin}) => {
 
         <Link to="/owner" className='text-md'>Dashboard</Link>
 
-        <button className='bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg w-24 transition-all cursor-pointer'>
+        {/* ✅ Desktop Login Button with setShowLogin */}
+        <button
+          onClick={() => setShowLogin(true)}
+          className='bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg w-24 transition-all cursor-pointer'
+        >
           Login
         </button>
       </div>
@@ -60,10 +62,14 @@ const Navbar = ({setShowLogin}) => {
             </Link>
           ))}
 
-          <Link to="/dashboard"  onClick={() => setOpen(false)}>Dashboard</Link>
+          <Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>
 
+          {/* ✅ Mobile Login Button with setShowLogin */}
           <button
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setShowLogin(true);
+              setOpen(false); // Close mobile menu
+            }}
             className='mt-4 bg-blue-700 hover:bg-blue-600 text-white px-8 py-2.5 rounded-md w-24 cursor-pointer'
           >
             Login
